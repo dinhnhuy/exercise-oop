@@ -14,7 +14,7 @@ namespace exercise3_bank
         private int _failedAttempts; 
 
         // TODO 2: Declare public AccountHolder property (read-only)
-        public string AccountHolder { get; } //
+        public string AccountHolder { get; } 
 
         // TODO 3: Declare IsLocked property with a private setter
         public bool IsLocked { get; private set; } 
@@ -112,21 +112,19 @@ namespace exercise3_bank
                 Console.WriteLine($"Account Holder: {account.AccountHolder}");
 
                 Console.WriteLine("\n--- 1. Testing Deposit ---");
-                account.Deposit(-50m); // Should fail
-                account.Deposit(200m); // Should succeed
-
+                account.Deposit(-50m); 
+                account.Deposit(200m); 
                 Console.WriteLine("\n--- 2. Testing Protected Balance View ---");
-                account.GetBalance("9999"); // Wrong PIN
-                decimal currentBalance = account.GetBalance("1234"); // Correct PIN
+                account.GetBalance("9999"); //correct pin is "1234"
+                decimal currentBalance = account.GetBalance("1234"); 
                 Console.WriteLine($"Verified Balance: {currentBalance:C}");
 
                 Console.WriteLine("\n--- 3. Testing Lockout Mechanism ---");
-                account.Withdraw(100m, "0000"); // Attempt 1 (Wrong)
-                account.Withdraw(100m, "1111"); // Attempt 2 (Wrong)
-                account.Withdraw(100m, "2222"); // Attempt 3 (Wrong -> Locks Account)
-
+                account.Withdraw(100m, "0000"); 
+                account.Withdraw(100m, "1111"); 
+                account.Withdraw(100m, "2222"); 
                 // Further attempts should fail immediately due to lock
-                account.Withdraw(100m, "1234"); // Correct PIN, but account is now locked!
+                account.Withdraw(100m, "1234"); 
 
                 Console.WriteLine("\n--- 4. Account Lock Status ---");
                 Console.WriteLine($"Is account locked? {account.IsLocked}");
